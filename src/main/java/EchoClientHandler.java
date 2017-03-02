@@ -32,6 +32,16 @@ public class EchoClientHandler  extends ChannelInboundHandlerAdapter{
         builder.append("수신한 문자열 [");
         builder.append(readMessage);
         builder.append("]");
+    }
 
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        ctx.close();
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
     }
 }
